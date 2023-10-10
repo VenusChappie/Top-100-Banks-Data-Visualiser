@@ -1,28 +1,5 @@
-import pandas as pd
-import matplotlib as plt
-
-file_path = "top100banks.xlsx"
-raw_data = pd.read_excel(file_path)
-
-def view_full_data():
-    print(raw_data)
-
-def top5_banks():
-    top_5_assets = raw_data.sort_values(by="total_assets_us_b", ascending=False).head(5)
-    banks_assets = top_5_assets[["bank", "total_assets_us_b"]]
-    banks_assets["rank"] = banks_assets.index + 1
-    banks_assets.set_index("rank", inplace=True)
-    print(banks_assets)
-
-
-def most_freq_countries():
-    values_count = raw_data["country"].value_counts()
-    countries_ = values_count.head(5).reset_index()
-    countries_.columns = ["country", "frequency"]
-    countries_["rank"] = countries_.index + 1
-    countries_.set_index("rank", inplace=True)
-    print(countries_)
-
+import wrangled_data as dt
+from prettytable import PrettyTable 
 
 def welcome():
     
@@ -44,25 +21,62 @@ def take_instructions():
         handle_instruction(command)
 
 def help():
-    print("HELP!")   
+    table = PrettyTable()
+    table.field_names = ["Command", "Description"]
+    table.add_row(["Help", "Display help and instructions"])
+    table.add_row(["Top 5 Countries", "Show the top 5 countries"])
+    table.add_row(["Top 5 Banks", "Show the top 5 banks"])
+    table.add_row(["Full Data", "View the full dataset"])
+    table.add_row(["Below 500 Billion Assets", "Show banks with assets below 500 billion USD"])
+    table.add_row(["Above 500 Billion Assets", "Show banks with assets above 500 billion USD"])
+    table.add_row(["Top 10 Banks China", "Show the top 10 banks in China"])
+    table.add_row(["Top 10 Banks USA", "Show the top 10 banks in the USA"])
+    table.add_row(["Top 10 Banks Japan", "Show the top 10 banks in Japan"])
+    table.add_row(["Top 5 Banks Germany", "Show the top 5 banks in Germany"])
+    
+    return table.get_string()
+ 
 
 def handle_instruction(comm):
     command = comm.title()
     if command == "Help":
-        return help()
+        help_box = help()
+        return print(help_box)
     elif command == "Top 5 Countries":
-        return most_freq_countries()
+        # Done
+        return dt.most_freq_countries()
     elif command == "Top 5 Banks":
-        return top5_banks()
+        # Done
+        return dt.top5_banks()
     elif command == "Full Data":
-        return view_full_data()
+        # Done
+        return dt.view_full_data()
+    elif command == "Below 500 Billion Assets":
+        # Done
+        return dt.lessthan_500US_Bancorp()
+    elif command == "Above 500 Billion Assets":
+        # Done
+        return dt.morethan_500US_Bancorp()
+    elif command == "Top 10 Banks China":
+        # Done
+        return dt.top10_banks_china()
+    elif command == "Top 10 Banks USA":
+        # Done
+        return dt.top10_banks_US()
+    elif command == "Top 10 Banks Japan":
+        return dt.top10_banks_japan()
+    elif command == "Top 5 Banks Germany":
+        return dt.top5_banks_germany()
     else:
-        print("Sorry we do not understand that command, please try again.")
+        print("\nSorry we do not understand that command, please try again.\n")
         
         
 def rungame():
     welcome()
-    take_instructions()
+    take_instructions() 
+    
+
+
     
 def ascii_art(fn):
     f = open (fn, 'r')
