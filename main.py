@@ -15,7 +15,8 @@ def welcome():
     print(welcome_message)
     
 def country_notFound():
-    message = str("Unfortunately this country does not have any banks listed in the Top 100 Banks in the World\nPlease try again.")
+    
+    message = str("\nUnfortunately this country does not have any banks listed in the Top 100 Banks in the World\n\nPlease try again.\n")
     return message
     
 def take_instructions():
@@ -41,41 +42,58 @@ def help():
     return table.get_string()
 
 def call_all(country, count):
-    print("I got to call all function")
-    toppi = dt.top5_banks(country, count)
-    # dt.lessthan_500US_Bancorp(country, count)
-    # dt.morethan_500US_Bancorp(country, count)
-    # dt.how_many_banks_in_top100(country, count)
-    # dt.top10_banks(country, count=10)
- 
+
+    dt.top5_banks(country, count)
+    dt.lessthan_500US_Bancorp(country, count)
+    dt.morethan_500US_Bancorp(country, count)
+    dt.how_many_banks_in_top100(country, count)
+    dt.top10_banks(country, count)
+
+def standardize_input(comm):
+    
+    list_of_input = comm.split(" ")
+    
+    results = []
+    
+    if len(list_of_input) > 2:
+        country = list_of_input[0] + " " + list_of_input[1]
+        count = list_of_input[2]
+    elif len(list_of_input) > 1:
+        country = list_of_input[0]
+        count = list_of_input[1]
+    elif len(list_of_input) == 1:
+        country = list_of_input[0]
+        count = 5
+        
+    if country == "usa":
+        country = "USA"
+    elif country == "uk":
+        country = "UK"
+    else:
+        country = country.title()
+        
+    results.append(country)
+    results.append(count)
+    
+    return results
 
 def handle_instruction(comm):
-    
-    # print("I made it to handle instruction")
-    
+        
     country_list = dt.data_countries()
     
-    blem = comm.split(" ")
-
-    # Assigning the country and count from the user input
-    country = blem[0]
-    if len(blem) > 1:
-        count = blem[1]
+    standard_check = standardize_input(comm)
     
-    # Standardizing the input from the user 
-    command = country.title()
-    print(command)
+    command = standard_check[0]
+    count = standard_check[1]
     
     # Handling the command from the user.
     if command == "Help":
-        help_box = help()
-        return print(help_box)
+        return print(help())
     elif command == "Full Data":
         return dt.view_full_data()
     elif command not in country_list:
         return print(country_notFound())
     elif command in country_list:
-        print("I passed the condition that checks if the country exists")
         return call_all(command, count) 
     else:
         print("\nSorry we do not understand that command, please try again.\n")
@@ -84,9 +102,6 @@ def handle_instruction(comm):
 def rungame():
     welcome()
     take_instructions() 
-    # dt.lessthan_500US_Bancorp("US")
-    # dt.data_countries()
-
     
 def ascii_art(fn):
     f = open (fn, 'r')

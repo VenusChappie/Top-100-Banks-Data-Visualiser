@@ -1,1 +1,26 @@
-# Data_Visualizer
+# Welcome to my Data Visualizer
+
+<picture>
+  <img alt=" Shows a cat with sunglasses on, asking to be spoken to in data." src="https://media3.giphy.com/media/SvckSy7fFviqrq8ClF/giphy.gif?cid=ecf05e47ovhxr2hsbchwck8prwvhf10lho9cysmiumedcil4&ep=v1_gifs_search&rid=giphy.gif&ct=g">
+</picture>
+
+## Summary:
+
+This is a simple and easy-to-use data visualization tool. I've taken open-source data 
+and made use of data manipulation libraries in Python to extract and compartmentalize 
+the most important aspects of the data. This tool works using keyword prompts that will
+automatically visualize the data requested from the prompt.
+
+### STEP 1
+
+* Navigate to `main.py`
+* Run the code
+
+### STEP 2
+
+* Read the prompt and press enter to continue.
+
+### STEP 3
+
+* Choose one of the keywords displayed in your terminal and watch the magic happen
+
