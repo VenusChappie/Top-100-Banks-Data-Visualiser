@@ -30,14 +30,9 @@ def help():
     table.field_names = ["Command", "Description"]
     table.add_row(["Help", "Display help and instructions"])
     table.add_row(["Top 5 Countries", "Show the top 5 countries"])
-    table.add_row(["Top 5 Banks", "Show the top 5 banks"])
     table.add_row(["Full Data", "View the full dataset"])
-    table.add_row(["Below 500 Billion Assets", "Show banks with assets below 500 billion USD"])
-    table.add_row(["Above 500 Billion Assets", "Show banks with assets above 500 billion USD"])
-    table.add_row(["Top 10 Banks China", "Show the top 10 banks in China"])
-    table.add_row(["Top 10 Banks USA", "Show the top 10 banks in the USA"])
-    table.add_row(["Top 10 Banks Japan", "Show the top 10 banks in Japan"])
-    table.add_row(["Top 5 Banks Germany", "Show the top 5 banks in Germany"])
+    table.add_row(["[Country of your choice]", "Will return banks in the Top 100 if any"])
+    
     
     return table.get_string()
 
