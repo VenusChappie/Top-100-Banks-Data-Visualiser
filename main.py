@@ -31,7 +31,7 @@ def help():
     table.add_row(["Help", "Display help and instructions"])
     table.add_row(["Top 5 Countries", "Show the top 5 countries"])
     table.add_row(["Full Data", "View the full dataset"])
-    table.add_row(["[Country of your choice]", "Will return banks in the Top 100 if any"])
+    table.add_row(["<Country of your choice>", "Will return banks in the Top 100 if any"])
     
     
     return table.get_string()
